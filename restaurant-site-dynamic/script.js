@@ -86,7 +86,7 @@ function setEventListener(expand){
 function toggleText(e){
  
   
-    const description = e.target.parentElement.nextElementSibling;
+    const description = e.target.nextElementSibling.parentElement;
     // console.log(description);
     description.classList.toggle('.expand');
 
