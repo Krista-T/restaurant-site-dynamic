@@ -28,13 +28,25 @@ function showProduct(product){
  copy.querySelector('h3').textContent = product.name;
  copy.querySelector('.about').textContent = product.shortdescription;
   copy.querySelector('.price').textContent = "PRICE:" + " " + product.price;
-  copy.querySelector('.discount').textContent = "DISCOUNT:" + " " + product.discount;
+  // copy.querySelector('.discount').textContent = "DISCOUNT:" + " " + product.discount;
   // copy.querySelector('.soldout').textContent =product.soldout;
+  //  let newprice = product.price - product.discount;
 
-//if on discount calculate price
+
+//if on discount calculate price 
 if(product.discount) {
   console.log('calc price');
-  
+  let newprice = product.price - product.discount;
+  console.log(newprice);
+   copy.querySelector('.price').classList.add('hide');
+  copy.querySelector('.discount').classList.add('hide');
+  copy.querySelector('.sale').textContent = "SALE:" + " " + newprice;
+  //create new li elem and append it NE RADI
+  // newprice.document.createElement('li');
+  // newprice.createTextNode("PRICE:" + " " + product.newprice);
+  // node.appendChild(textnode);
+  // copy.querySelector('li').appendChild(node);
+
 
 }
 
@@ -44,11 +56,49 @@ if(product.soldout){
   console.log('sold');
   copy.querySelector('.price').classList.add('hide');
   copy.querySelector('.discount').classList.add('hide');
+  copy.querySelector('.sale').classList.add('hide');
   copy.querySelector('.soldout').textContent = "SOLDOUT";
 }
 
 
-      
+ //EXPAND TEXT
+
+// let expands;
+
+// expands = document.querySelectorAll('button.expand');
+
+let  expands = document.querySelectorAll('button.expand');
+console.log(expands);
+
+
+//LOOP
+ expands.forEach(setEventListener);
+
+
+function setEventListener(btn){
+  btn.addEventListener('click', toggleText);
+
+
+ }
+
+function toggleText(e){
+ 
+    const description = e.target.parentElement.nextElementSibling;
+    // console.log(description);
+    description.classList.toggle('.expand');
+
+    console.log('i am in');
+    
+      if ( description.style.display == 'block') {
+         
+          description.style.display = 'none';
+  
+        } else {
+          description.style.display = 'block';
+        }  
+  
+}
+     
 
   //append
   document.querySelector('main').appendChild(copy);
@@ -86,42 +136,42 @@ function toggleNav() {
 
 
  
-//EXPAND TEXT
+// //EXPAND TEXT
 
-let expands;
+// let expands;
 
-expands = document.querySelectorAll('button.expand');
+// expands = document.querySelectorAll('button.expand');
 
-// expands = document.querySelectorAll('button.expand').nextElementSibling;
-console.log(expands);
-
-
-//LOOP
- expands.forEach(setEventListener);
+// // expands = document.querySelectorAll('button.expand').nextElementSibling;
+// console.log(expands);
 
 
-function setEventListener(btn){
-  btn.addEventListener('click', toggleText);
+// //LOOP
+//  expands.forEach(setEventListener);
 
 
- }
+// function setEventListener(btn){
+//   btn.addEventListener('click', toggleText);
 
-function toggleText(e){
+
+//  }
+
+// function toggleText(e){
  
   
-    const description = e.target.nextElementSibling.parentElement;
-    // console.log(description);
-    description.classList.toggle('.expand');
+//     const description = e.target.nextElementSibling.parentElement;
+//     // console.log(description);
+//     description.classList.toggle('.expand');
 
-    console.log('i am in');
+//     console.log('i am in');
     
-      if ( description.style.display == 'block') {
+//       if ( description.style.display == 'block') {
          
-          description.style.display = 'none';
+//           description.style.display = 'none';
   
-        } else {
-          description.style.display = 'block';
-        }  
+//         } else {
+//           description.style.display = 'block';
+//         }  
   
-}
+// }
 
