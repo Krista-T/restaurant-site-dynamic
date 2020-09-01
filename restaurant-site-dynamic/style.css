@@ -9,14 +9,16 @@
   padding: 30px;
  
 }
+
+
+
 body {
   margin: 0;
   padding: 30px;
   background-color: rgb(36, 35, 35);
   font-family: 'Montserrat', sans-serif;
   color: rgb(250, 235, 235); 
-  
-  
+    
  
 }
 
@@ -76,19 +78,23 @@ body {
 
 
 
-main {
+main>section {
   display: grid;
   max-width: 90%;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  grid-auto-rows: 1fr;
   grid-gap: 100px;  
   margin: 5% auto; 
   
 }
+main>section>h1 {
+  grid-column: 1/-1;
+}
 
 img {
+  
   max-width: 100%;
   height: auto;
+  
 }
 
 
@@ -97,11 +103,13 @@ img {
 h1{
   text-align: center;
   text-transform: uppercase;
-   margin: 7.5% 35% 0 35%; 
-   /* border-bottom: 1px solid white; */
+    margin: 10% 35% 0 35%;  
+    border-bottom: 1px solid white; 
 }
+
 h3 {
   text-align: center;
+  margin-top: 5%;
 
 } 
 

@@ -1,6 +1,60 @@
+// FETCH DATA CATEGORIES
 
-//FETCH DATA
+function getData() {
+  fetch("https://kea-alt-del.dk/t5/api/categories")
+   //initialize data from json
+  .then(function(inData){
+       return inData.json();
+   })
+   //receive data
+ .then(function(data) {
+  categoriesRecieved(data);
+});
+}
+getData();
 
+//call functions
+
+function  categoriesRecieved(cats) {
+  
+  createSections(cats);
+  createNavigation(cats);
+  fetchData();
+ 
+}
+
+
+//create sections
+function createSections(categories) {
+ //loop through categories
+  categories.forEach(createSec);
+
+  function createSec(category) {
+    const section = document.createElement("section");
+    //set attr (what, where)
+    section.setAttribute("id", category);
+    const h1 = document.createElement("h1");
+    h1.textContent = category;
+    section.appendChild(h1);
+    document.querySelector("main").appendChild(section);
+  }
+
+}
+
+//create navigation
+function createNavigation(categories) {
+  categories.forEach(cat => {
+    const a = document.createElement("a");
+    a.textContent = cat;
+    a.setAttribute("href", `#${cat}`)
+    document.querySelector("#nav").appendChild(a);
+  })
+}
+
+  //FETCH DATA  WRAP IT IN FUNCTION
+
+
+function fetchData() {
 fetch("https://kea-alt-del.dk/t5/api/productlist")
 
 //initialize data from json
@@ -13,6 +67,8 @@ fetch("https://kea-alt-del.dk/t5/api/productlist")
   dataReceived(data);
 });
 
+}
+
 function dataReceived(products) {
 
 
@@ -24,7 +80,7 @@ function showProduct(product){
   const template = document.querySelector('#products-template').content;
   const copy = template.cloneNode(true);
  //populate template
- copy.querySelector('h1').textContent = product.category;
+//  copy.querySelector('h1').textContent = product.category;
  copy.querySelector('h3').textContent = product.name;
  copy.querySelector('.about').textContent = product.shortdescription;
   copy.querySelector('.price').textContent = "PRICE:" + " " + product.price;
@@ -36,17 +92,11 @@ function showProduct(product){
 //if on discount calculate price 
 if(product.discount) {
   console.log('calc price');
-  let newprice = product.price - product.discount;
+   const newprice = product.price - product.discount;
   console.log(newprice);
    copy.querySelector('.price').classList.add('hide');
   copy.querySelector('.discount').classList.add('hide');
   copy.querySelector('.sale').textContent = "SALE:" + " " + newprice;
-  //create new li elem and append it NE RADI
-  // newprice.document.createElement('li');
-  // newprice.createTextNode("PRICE:" + " " + product.newprice);
-  // node.appendChild(textnode);
-  // copy.querySelector('li').appendChild(node);
-
 
 }
 
@@ -60,18 +110,30 @@ if(product.soldout){
   copy.querySelector('.soldout').textContent = "SOLDOUT";
 }
 
+//if allergens
 
- //EXPAND TEXT
+
+//if vegetarian
+
+//if alcohol
+
+
+//if category
+
+  
+
+
+
+
+  //EXPAND TEXT NE RADI
 
 // let expands;
 
 // expands = document.querySelectorAll('button.expand');
 
 let  expands = document.querySelectorAll('button.expand');
-console.log(expands);
 
-
-//LOOP
+//loop
  expands.forEach(setEventListener);
 
 
@@ -83,8 +145,8 @@ function setEventListener(btn){
 
 function toggleText(e){
  
-    const description = e.target.parentElement.nextElementSibling;
-    // console.log(description);
+    const description = e.target.nextElementSibling;
+     console.log(description);
     description.classList.toggle('.expand');
 
     console.log('i am in');
@@ -101,11 +163,12 @@ function toggleText(e){
      
 
   //append
-  document.querySelector('main').appendChild(copy);
+  const parentElement = document.querySelector("section#" +product.category);
+  parentElement.appendChild(copy);
 }
 }
  
-    
+   
 
 
 //MENU GLOBAL VARIABLES
