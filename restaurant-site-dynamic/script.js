@@ -13,6 +13,7 @@ function getData() {
 }
 getData();
 
+
 //call functions
 
 function  categoriesRecieved(cats) {
@@ -28,7 +29,7 @@ function  categoriesRecieved(cats) {
 function createSections(categories) {
  //loop through categories
   categories.forEach(createSec);
-
+  console.log(categories);
   function createSec(category) {
     const section = document.createElement("section");
     //set attr (what, where)
@@ -51,8 +52,7 @@ function createNavigation(categories) {
   })
 }
 
-  //FETCH DATA  WRAP IT IN FUNCTION
-
+  //FETCH DATA + WRAP IT IN FUNCTION
 
 function fetchData() {
 fetch("https://kea-alt-del.dk/t5/api/productlist")
@@ -70,8 +70,7 @@ fetch("https://kea-alt-del.dk/t5/api/productlist")
 }
 
 function dataReceived(products) {
-
-
+  console.log(products);
   //loop through data
   products.forEach(showProduct);
 
@@ -79,9 +78,18 @@ function showProduct(product){
    //find template
   const template = document.querySelector('#products-template').content;
   const copy = template.cloneNode(true);
- //populate template
+
+   //populate template
+  //img
+ const img = copy.querySelector(".product-img");
+
+ //set attr to img NE RADI
+img.setAttribute("src", `https://kea-alt-del.dk/t5/site/imgs/medium/${product.image}-md.jpg`);
+
+
 //  copy.querySelector('h1').textContent = product.category;
  copy.querySelector('h3').textContent = product.name;
+
  copy.querySelector('.about').textContent = product.shortdescription;
   copy.querySelector('.price').textContent = "PRICE:" + " " + product.price;
   // copy.querySelector('.discount').textContent = "DISCOUNT:" + " " + product.discount;
@@ -118,18 +126,11 @@ if(product.soldout){
 //if alcohol
 
 
-//if category
 
   
 
 
-
-
-  //EXPAND TEXT NE RADI
-
-// let expands;
-
-// expands = document.querySelectorAll('button.expand');
+  //EXPAND TEXT NE RADI - FETCH DATA LONG DSCR
 
 let  expands = document.querySelectorAll('button.expand');
 
@@ -138,8 +139,12 @@ let  expands = document.querySelectorAll('button.expand');
 
 
 function setEventListener(btn){
-  btn.addEventListener('click', toggleText);
-
+  console.log('expand');
+  btn.addEventListener('click',  () => {
+    fetch(`https://kea-alt-del.dk/t5/api/product?id=${dish.id}`)
+      .then(res => res.json())
+      .then(toggleText);
+  });
 
  }
 
