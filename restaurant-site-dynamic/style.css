@@ -42,31 +42,29 @@ body {
 #nav  li a {
   list-style: none;
   text-align: center;
- 
-
-}
-
-
-.navlink a {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 2.5rem;
   color: rgb(250, 235, 235);
   margin: 20%;
-
- 
 }
+
+
 
 .navlink a:visited {
   color: rgb(250, 235, 235); 
 }
 
 #logo{
-  font-size: 3rem;
+  font-size: 2.4rem;
+  text-transform: uppercase;
   margin-left: 10px;
   margin-top: 20px;
  
 }
+
+
+
 
 #burger {
   position: fixed;
@@ -110,7 +108,7 @@ h3 {
 li {
   list-style-type: none;
   display: inline;
-  padding: 15px;
+  padding: 5px;
 }
 
 #icons{
@@ -152,7 +150,13 @@ button {
 }
 
 
-.description {
+/**HIDE**/
+
+.hide {
+  display: none;
+}
+
+.description{
   display: none;
   margin: 0 5%;
  

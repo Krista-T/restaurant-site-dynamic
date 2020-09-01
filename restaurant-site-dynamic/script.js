@@ -27,9 +27,28 @@ function showProduct(product){
  copy.querySelector('h1').textContent = product.category;
  copy.querySelector('h3').textContent = product.name;
  copy.querySelector('.about').textContent = product.shortdescription;
- copy.querySelector('.price').textContent = product.price;
- copy.querySelector('.discount').textContent = product.discount;
- copy.querySelector('.sold').textContent = product.soldout;
+  copy.querySelector('.price').textContent = "PRICE:" + " " + product.price;
+  copy.querySelector('.discount').textContent = "DISCOUNT:" + " " + product.discount;
+  // copy.querySelector('.soldout').textContent =product.soldout;
+
+//if on discount calculate price
+if(product.discount) {
+  console.log('calc price');
+  
+
+}
+
+
+//if soldout
+if(product.soldout){
+  console.log('sold');
+  copy.querySelector('.price').classList.add('hide');
+  copy.querySelector('.discount').classList.add('hide');
+  copy.querySelector('.soldout').textContent = "SOLDOUT";
+}
+
+
+      
 
   //append
   document.querySelector('main').appendChild(copy);
@@ -71,14 +90,18 @@ function toggleNav() {
 
 let expands;
 
-expands = document.querySelectorAll('.expand');
+expands = document.querySelectorAll('button.expand');
+
+// expands = document.querySelectorAll('button.expand').nextElementSibling;
 console.log(expands);
 
-//  expands.forEach(setEventListener);
+
+//LOOP
+ expands.forEach(setEventListener);
 
 
-function setEventListener(expand){
-  expand.addEventListener('click', toggleText);
+function setEventListener(btn){
+  btn.addEventListener('click', toggleText);
 
 
  }
