@@ -47,13 +47,12 @@ function createNavigation(categories) {
   categories.forEach(cat => {
     const a = document.createElement("a");
     a.textContent = cat;
-    a.setAttribute("href", `#${cat}`)
+    a.setAttribute("href", "#" + cat)
     document.querySelector("#nav").appendChild(a);
   })
 }
 
   //FETCH DATA + WRAP IT IN FUNCTION
-
 function fetchData() {
 fetch("https://kea-alt-del.dk/t5/api/productlist")
 
@@ -80,18 +79,21 @@ function showProduct(product){
   const copy = template.cloneNode(true);
 
    //populate template
+
   //img
  const img = copy.querySelector(".product-img");
 
- //set attr to img NE RADI
-img.setAttribute("src", `https://kea-alt-del.dk/t5/site/imgs/medium/${product.image}-md.jpg`);
+ //set attr to img 
+// img.setAttribute("src", `https://kea-alt-del.dk/t5/site/imgs/medium/${product.image}-md.jpg`);
+
+img.setAttribute("src", "https://kea-alt-del.dk/t5/site/imgs/medium/" + product.image + "-md.jpg");
 
 
 //  copy.querySelector('h1').textContent = product.category;
  copy.querySelector('h3').textContent = product.name;
 
  copy.querySelector('.about').textContent = product.shortdescription;
-  copy.querySelector('.price').textContent = "PRICE:" + " " + product.price;
+  copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00dkk";
   // copy.querySelector('.discount').textContent = "DISCOUNT:" + " " + product.discount;
   // copy.querySelector('.soldout').textContent =product.soldout;
   //  let newprice = product.price - product.discount;
@@ -104,7 +106,7 @@ if(product.discount) {
   console.log(newprice);
    copy.querySelector('.price').classList.add('hide');
   copy.querySelector('.discount').classList.add('hide');
-  copy.querySelector('.sale').textContent = "SALE:" + " " + newprice;
+  copy.querySelector('.sale').textContent = "SALE:" + " " + newprice + ".00dkk";
 
 }
 
