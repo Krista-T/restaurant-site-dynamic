@@ -80,6 +80,8 @@ function showProduct(product){
 
    //POPULATE TEMPLATE
 
+
+
   //img
  const img = copy.querySelector(".product-img");
 
@@ -135,7 +137,7 @@ if(product.vegetarian) {
 //if alcohol
 if(product.alcohol) {
   copy.querySelector('#alcohol').style.visibility = 'visible';
-  copy.querySelector('#alcohol').textContent = "" +  product.alcohol.toString()  + "%"   + " " + "alc.";
+  copy.querySelector('#alcohol').textContent = " " +  product.alcohol.toString()  + "%"   + " " + "alc.";
 }
 
   
@@ -150,7 +152,7 @@ const btnExpand = document.querySelectorAll('button.expand');
 function setEventListener(btn){
   console.log('setting event');
   btn.addEventListener('click', fireEvent);
-  btn.addEventListener('click', getData);
+  btn.addEventListener('click', recieveData);
  
   
 }
@@ -177,7 +179,7 @@ function fireEvent(e) {
         }  
       }
         //get data
-function getData(){
+function recieveData(){
 
   //fetch all ids
   fetch("https://kea-alt-del.dk/t5/api/product?id=" + product.id )
@@ -191,13 +193,13 @@ function getData(){
   .then(function showDetails(txt) {
       console.log(txt.longdescription);
     //  showDetails(); 
-document.querySelector('.long-description').textContent =
+document.querySelector('.description').textContent =
   txt.longdescription });
 
  
-
 }
   
+
 
 function showDetails(){
   console.log('product details');
@@ -212,7 +214,8 @@ function showDetails(){
 }
 
 
-}  
+} 
+
 
 
  //NAVIGATION 
