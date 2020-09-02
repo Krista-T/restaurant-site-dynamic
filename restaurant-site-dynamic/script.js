@@ -74,29 +74,24 @@ function dataReceived(products) {
   products.forEach(showProduct);
 
 function showProduct(product){
-   //find template
+   //FIND TEMPLATE
   const template = document.querySelector('#products-template').content;
   const copy = template.cloneNode(true);
 
-   //populate template
+   //POPULATE TEMPLATE
 
   //img
  const img = copy.querySelector(".product-img");
 
  //set attr to img 
-// img.setAttribute("src", `https://kea-alt-del.dk/t5/site/imgs/medium/${product.image}-md.jpg`);
-
 img.setAttribute("src", "https://kea-alt-del.dk/t5/site/imgs/medium/" + product.image + "-md.jpg");
 
 
-//  copy.querySelector('h1').textContent = product.category;
- copy.querySelector('h3').textContent = product.name;
 
+ copy.querySelector('h3').textContent = product.name;
  copy.querySelector('.about').textContent = product.shortdescription;
+
   copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00dkk";
-  // copy.querySelector('.discount').textContent = "DISCOUNT:" + " " + product.discount;
-  // copy.querySelector('.soldout').textContent =product.soldout;
-  //  let newprice = product.price - product.discount;
 
 
 //if on discount calculate price 
@@ -120,6 +115,7 @@ if(product.soldout){
   copy.querySelector('.soldout').textContent = "SOLDOUT";
 }
 
+
 //if allergens NO DATA IN OBJ!
 if(product.allergens) {
   copy.querySelector('#allergen').style.visibility = 'visible';
@@ -137,62 +133,89 @@ if(product.vegetarian) {
 
 
 //if alcohol
-
 if(product.alcohol) {
   copy.querySelector('#alcohol').style.visibility = 'visible';
-  copy.querySelector('#alcohol').textContent = "-" +  product.alcohol.toString()  + "%"   + " " + "alc.";
+  copy.querySelector('#alcohol').textContent = "" +  product.alcohol.toString()  + "%"   + " " + "alc.";
 }
 
   
 
+  //show description SEMI-WORKING
+const btnExpand = document.querySelectorAll('button.expand');
 
-  //EXPAND TEXT NE RADI - FETCH DATA LONG DSCR
-
-// let  expands = document.querySelectorAll('button.expand');
-
-// //loop
-//  expands.forEach(setEventListener);
+//loop
+ btnExpand.forEach(setEventListener);
 
 
-// function setEventListener(btn){
-//   console.log('expand');
-//   btn.addEventListener('click',  () => {
-//     fetch(`https://kea-alt-del.dk/t5/api/product?id=${dish.id}`)
-//       .then(res => res.json())
-//       .then(toggleText);
-//   });
-
-//  }
-
-// function toggleText(e){
+function setEventListener(btn){
+  console.log('setting event');
+  btn.addEventListener('click', fireEvent);
+  btn.addEventListener('click', getData);
  
-//     const description = e.target.nextElementSibling;
-//      console.log(description);
-//     description.classList.toggle('.expand');
+  
+}
 
-//     console.log('i am in');
+//TOGGLE CHECK!!!
+function fireEvent(e) {
+  console.log('i fired event');
+
+
+  //SEMI-WORKING
+  const description = e.target.parentElement.nextElementSibling;
+
+    console.log(description); //NULL
     
-//       if ( description.style.display == 'block') {
+    description.classList.toggle('button.expand');
+
+    console.log('i am in toggle');
+      if ( description.style.display == 'block') {
          
-//           description.style.display = 'none';
+          description.style.display = 'none';
   
-//         } else {
-//           description.style.display = 'block';
-//         }  
+        } else {
+          description.style.display = 'block';
+        }  
+      }
+        //get data
+function getData(){
+
+  //fetch all ids
+  fetch("https://kea-alt-del.dk/t5/api/product?id=" + product.id )
+
+  //initialize data from json
+  .then(function(init){
+    return init.json();
+  })
   
-// }
-     
+  //receive data
+  .then(function showDetails(txt) {
+      console.log(txt.longdescription);
+    //  showDetails(); 
+document.querySelector('.long-description').textContent =
+  txt.longdescription });
+
+ 
+
+}
+  
+
+function showDetails(){
+  console.log('product details');
+ 
+}
+
+    
 
   //append
   const parentElement = document.querySelector("section#" +product.category);
   parentElement.appendChild(copy);
 }
-}
- 
-   
 
 
-//MENU GLOBAL VARIABLES
+}  
+
+
+ //NAVIGATION 
 
 let burger = document.querySelector('#burger i');
 let nav = document.querySelector('#nav');
@@ -220,42 +243,3 @@ function toggleNav() {
 
 
  
-// //EXPAND TEXT
-
-// let expands;
-
-// expands = document.querySelectorAll('button.expand');
-
-// // expands = document.querySelectorAll('button.expand').nextElementSibling;
-// console.log(expands);
-
-
-// //LOOP
-//  expands.forEach(setEventListener);
-
-
-// function setEventListener(btn){
-//   btn.addEventListener('click', toggleText);
-
-
-//  }
-
-// function toggleText(e){
- 
-  
-//     const description = e.target.nextElementSibling.parentElement;
-//     // console.log(description);
-//     description.classList.toggle('.expand');
-
-//     console.log('i am in');
-    
-//       if ( description.style.display == 'block') {
-         
-//           description.style.display = 'none';
-  
-//         } else {
-//           description.style.display = 'block';
-//         }  
-  
-// }
-

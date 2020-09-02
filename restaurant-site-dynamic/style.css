@@ -188,7 +188,8 @@ button {
 }
 
 .description{
-  display: none;
-  margin: 0 5%;
+   display: none; 
+  /* margin: 0 5%; */
+ 
  
 }
