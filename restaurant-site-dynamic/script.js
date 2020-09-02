@@ -120,53 +120,67 @@ if(product.soldout){
   copy.querySelector('.soldout').textContent = "SOLDOUT";
 }
 
-//if allergens
+//if allergens NO DATA IN OBJ!
+if(product.allergens) {
+  copy.querySelector('#allergen').style.visibility = 'visible';
+  copy.querySelector('#allergen').textContent = "contains:" + " " +product.allergens;
+  
+}
+
 
 
 //if vegetarian
+if(product.vegetarian) {
+  copy.querySelector('#vegetarian').style.visibility = 'visible';
+  copy.querySelector('#vegetarian').textContent = " vegetarian friendly";
+}
+
 
 //if alcohol
 
-
+if(product.alcohol) {
+  copy.querySelector('#alcohol').style.visibility = 'visible';
+  copy.querySelector('#alcohol').textContent = "-" +  product.alcohol.toString()  + "%"   + " " + "alc.";
+}
 
   
 
 
   //EXPAND TEXT NE RADI - FETCH DATA LONG DSCR
 
-let  expands = document.querySelectorAll('button.expand');
+// let  expands = document.querySelectorAll('button.expand');
 
-//loop
- expands.forEach(setEventListener);
+// //loop
+//  expands.forEach(setEventListener);
 
 
-function setEventListener(btn){
-  console.log('expand');
-  btn.addEventListener('click',  () => {
-    fetch(`https://kea-alt-del.dk/t5/api/product?id=${dish.id}`)
-      .then(res => res.json())
-      .then(toggleText);
-  });
+// function setEventListener(btn){
+//   console.log('expand');
+//   btn.addEventListener('click',  () => {
+//     fetch(`https://kea-alt-del.dk/t5/api/product?id=${dish.id}`)
+//       .then(res => res.json())
+//       .then(toggleText);
+//   });
 
- }
+//  }
 
-function toggleText(e){
+// function toggleText(e){
  
-    const description = e.target.nextElementSibling;
-     console.log(description);
-    description.classList.toggle('.expand');
+//     const description = e.target.nextElementSibling;
+//      console.log(description);
+//     description.classList.toggle('.expand');
 
-    console.log('i am in');
+//     console.log('i am in');
     
-      if ( description.style.display == 'block') {
+//       if ( description.style.display == 'block') {
          
-          description.style.display = 'none';
+//           description.style.display = 'none';
   
-        } else {
-          description.style.display = 'block';
-        }  
+//         } else {
+//           description.style.display = 'block';
+//         }  
   
-}
+// }
      
 
   //append
