@@ -140,7 +140,14 @@ if(product.alcohol) {
   copy.querySelector('#alcohol').textContent = " " +  product.alcohol.toString()  + "%"   + " " + "alc.";
 }
 
-  
+ 
+//filter CLASS!!
+const article = copy.querySelector('article');
+if(product.vegetarian) {
+  article.classList.add('#vegetarian');
+  console.log(article);
+}
+
 
   //show description SEMI-WORKING
 const btnExpand = document.querySelectorAll('button.expand');
@@ -178,7 +185,7 @@ function fireEvent(e) {
           description.style.display = 'block';
         }  
       }
-        //get data
+        //recieve data
 function recieveData(){
 
   //fetch all ids
@@ -191,7 +198,7 @@ function recieveData(){
   
   //receive data
   .then(function showDetails(txt) {
-      console.log(txt.longdescription);
+      console.log('show details');
     //  showDetails(); 
 document.querySelector('.description').textContent =
   txt.longdescription });
@@ -201,13 +208,6 @@ document.querySelector('.description').textContent =
   
 
 
-function showDetails(){
-  console.log('product details');
- 
-}
-
-    
-
   //append
   const parentElement = document.querySelector("section#" +product.category);
   parentElement.appendChild(copy);
@@ -215,6 +215,20 @@ function showDetails(){
 
 
 } 
+
+
+//FILTERS EV LIST-PUTS HIDE ON ALL ARTICLES
+const vegfilter = document.querySelector('#veg-filter');
+
+vegfilter.addEventListener('click', vegFilterClicked);
+
+function vegFilterClicked(){
+const articles = document.querySelectorAll("article:not(#vegetarian)");
+console.log(articles);
+//  articles.forEach(el=>{
+//    el.classList.add('hide');
+//  })
+}
 
 
 
