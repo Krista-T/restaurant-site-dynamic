@@ -90,11 +90,9 @@ function showProduct(product){
 img.setAttribute("src", "https://kea-alt-del.dk/t5/site/imgs/medium/" + product.image + "-md.jpg");
 
 
-
  copy.querySelector('h3').textContent = product.name;
  copy.querySelector('.about').textContent = product.shortdescription;
-
-  copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00dkk";
+copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00dkk";
 
 
 //if on discount calculate price 
@@ -120,9 +118,11 @@ if(product.soldout){
 
 
 //if allergens NO DATA IN OBJ!
+
+
 if(product.allergens) {
-  copy.querySelector('#allergen').style.visibility = 'visible';
-  copy.querySelector('#allergen').textContent = "contains:" + " " +product.allergens;
+  copy.querySelector('.allergen').style.visibility = 'visible';
+  copy.querySelector('.allergen').textContent = "contains:" + " " +product.allergens;
   
 }
 
@@ -130,27 +130,27 @@ if(product.allergens) {
 
 //if vegetarian
 if(product.vegetarian) {
-  copy.querySelector('#vegetarian').style.visibility = 'visible';
-  copy.querySelector('#vegetarian').textContent = " vegetarian friendly";
+  copy.querySelector('.vegetarian').style.visibility = 'visible';
+  copy.querySelector('.vegetarian').textContent = " vegetarian friendly";
 }
 
 
 //if alcohol
 if(product.alcohol) {
-  copy.querySelector('#alcohol').style.visibility = 'visible';
-  copy.querySelector('#alcohol').textContent = " " +  product.alcohol.toString()  + "%"   + " " + "alc.";
+  copy.querySelector('.alcohol').style.visibility = 'visible';
+  copy.querySelector('.alcohol').textContent = " " +  product.alcohol.toString()  + "%"   + " " + "alc.";
 }
 
  
-//filter CLASS!!
+//filter CLASSES
 const article = copy.querySelector('article');
 if(product.vegetarian) {
-  article.classList.add('#vegetarian');
+  article.classList.add('vegetarian');
   //console.log(article);
 }
 
 
-  //show description SEMI-WORKING
+  //show description
 const btnExpand = copy.querySelector('button.expand');
 
 setEventListener(btnExpand);
@@ -165,7 +165,7 @@ function setEventListener(btn){
 }
 
 
-        //recieve data
+      //recieve data
   function recieveData(){
     console.log(copy)
     //fetch all ids
@@ -178,32 +178,35 @@ function setEventListener(btn){
     
     //receive data
     .then(function showDetails(txt) {
-      const arti = document.querySelector(`article[data-id="${product.id}"]`)
+      const arti = document.querySelector(`article[data-id="${product.id}"]`);
         console.log('show details');
       //  showDetails(); 
       const description=arti.querySelector('.description')
-  description.textContent =
-    txt.longdescription 
-    fireEvent(description)
+  description.textContent = 
+    txt.longdescription + " "  + txt.allergens;
+
+
+    //show allergens
+    if(txt.allergens) {
+      document.querySelector('.allergen').style.visibility = 'visible';
+      document.querySelector('.allergen').textContent = "A" + " " +txt.allergens;
+
+    }
+    
+    fireEvent(description);
   
   });
 
   
   }
   
-//TOGGLE CHECK!!!
+//TOGGLE
 function fireEvent(description) {
   console.log('i fired event');
 
-
-  //SEMI-WORKING
-  //const description = e.target.parentElement.nextElementSibling;
-
-    console.log(description); //NULL
-    
     description.classList.toggle('button.expand');
 
-    console.log('i am in toggle');
+   
       if ( description.style.display == 'block') {
          
           description.style.display = 'none';
@@ -222,18 +225,26 @@ function fireEvent(description) {
 } 
 
 
-//FILTERS EV LIST-PUTS HIDE ON ALL ARTICLES!!!
+//FILTERS VARIABLES& EV LISTEnERS
 const vegfilter = document.querySelector('#veg-filter');
-
+// const alcohol = document.querySelector('#alcohol');
 vegfilter.addEventListener('click', vegFilterClicked);
+// alcohol.addEventListener('click', alcoholClicked);
+
 
 function vegFilterClicked(){
+  vegfilter.classList.toggle('active');
 const articles = document.querySelectorAll("article:not(.vegetarian)");
 console.log(articles);
-//  articles.forEach(el=>{
-//    el.classList.add('hide');
-//  })
+articles.forEach(article => article.classList.toggle('hide'));
+
 }
+
+// function alcoholClicked(){
+//   const art = document.querySelectorAll("article:not(.alcohol)");
+//   console.log(alcohol);
+  
+//   }
 
 
 
@@ -249,7 +260,7 @@ function toggleNav() {
     burger.classList.toggle('fa-bars');
     burger.classList.toggle('fa-times');
   
-    if (  nav.style.display == 'block') {
+    if ( nav.style.display == 'block') {
        
         nav.style.display = 'none';
 
