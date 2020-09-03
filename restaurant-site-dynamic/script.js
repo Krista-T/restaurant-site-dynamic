@@ -78,6 +78,7 @@ function showProduct(product){
   const template = document.querySelector('#products-template').content;
   const copy = template.cloneNode(true);
 
+  copy.querySelector('article').dataset.id=product.id
    //POPULATE TEMPLATE
 
 
@@ -145,32 +146,58 @@ if(product.alcohol) {
 const article = copy.querySelector('article');
 if(product.vegetarian) {
   article.classList.add('#vegetarian');
-  console.log(article);
+  //console.log(article);
 }
 
 
   //show description SEMI-WORKING
-const btnExpand = document.querySelectorAll('button.expand');
+const btnExpand = copy.querySelector('button.expand');
 
-//loop
- btnExpand.forEach(setEventListener);
+setEventListener(btnExpand);
 
 
 function setEventListener(btn){
-  console.log('setting event');
-  btn.addEventListener('click', fireEvent);
+  //console.log('setting event');
+  //btn.addEventListener('click', fireEvent);
   btn.addEventListener('click', recieveData);
  
   
 }
 
+
+        //recieve data
+  function recieveData(){
+    console.log(copy)
+    //fetch all ids
+    fetch("https://kea-alt-del.dk/t5/api/product?id=" + product.id )
+
+    //initialize data from json
+    .then(function(init){
+      return init.json();
+    })
+    
+    //receive data
+    .then(function showDetails(txt) {
+      const arti = document.querySelector(`article[data-id="${product.id}"]`)
+        console.log('show details');
+      //  showDetails(); 
+      const description=arti.querySelector('.description')
+  description.textContent =
+    txt.longdescription 
+    fireEvent(description)
+  
+  });
+
+  
+  }
+  
 //TOGGLE CHECK!!!
-function fireEvent(e) {
+function fireEvent(description) {
   console.log('i fired event');
 
 
   //SEMI-WORKING
-  const description = e.target.parentElement.nextElementSibling;
+  //const description = e.target.parentElement.nextElementSibling;
 
     console.log(description); //NULL
     
@@ -185,28 +212,6 @@ function fireEvent(e) {
           description.style.display = 'block';
         }  
       }
-        //recieve data
-function recieveData(){
-
-  //fetch all ids
-  fetch("https://kea-alt-del.dk/t5/api/product?id=" + product.id )
-
-  //initialize data from json
-  .then(function(init){
-    return init.json();
-  })
-  
-  //receive data
-  .then(function showDetails(txt) {
-      console.log('show details');
-    //  showDetails(); 
-document.querySelector('.description').textContent =
-  txt.longdescription });
-
- 
-}
-  
-
 
   //append
   const parentElement = document.querySelector("section#" +product.category);
@@ -217,13 +222,13 @@ document.querySelector('.description').textContent =
 } 
 
 
-//FILTERS EV LIST-PUTS HIDE ON ALL ARTICLES
+//FILTERS EV LIST-PUTS HIDE ON ALL ARTICLES!!!
 const vegfilter = document.querySelector('#veg-filter');
 
 vegfilter.addEventListener('click', vegFilterClicked);
 
 function vegFilterClicked(){
-const articles = document.querySelectorAll("article:not(#vegetarian)");
+const articles = document.querySelectorAll("article:not(.vegetarian)");
 console.log(articles);
 //  articles.forEach(el=>{
 //    el.classList.add('hide');
