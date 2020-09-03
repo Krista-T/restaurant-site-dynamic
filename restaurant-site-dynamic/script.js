@@ -97,7 +97,7 @@ copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00
 
 //if on discount calculate price 
 if(product.discount) {
-  console.log('calc price');
+  
    const newprice = product.price - product.discount;
   console.log(newprice);
    copy.querySelector('.price').classList.add('hide');
@@ -117,8 +117,7 @@ if(product.soldout){
 }
 
 
-//if allergens NO DATA IN OBJ!
-
+//if allergens 
 
 if(product.allergens) {
   copy.querySelector('.allergen').style.visibility = 'visible';
@@ -144,11 +143,23 @@ if(product.alcohol) {
  
 //filter CLASSES
 const article = copy.querySelector('article');
+
 if(product.vegetarian) {
   article.classList.add('vegetarian');
-  //console.log(article);
 }
 
+
+//causes problems
+// if(product.alcohol) {
+//   article.classList.add('alcohol');
+// }
+
+
+  
+
+
+
+ 
 
   //show description
 const btnExpand = copy.querySelector('button.expand');
@@ -157,8 +168,7 @@ setEventListener(btnExpand);
 
 
 function setEventListener(btn){
-  //console.log('setting event');
-  //btn.addEventListener('click', fireEvent);
+
   btn.addEventListener('click', recieveData);
  
   
@@ -183,15 +193,11 @@ function setEventListener(btn){
       //  showDetails(); 
       const description=arti.querySelector('.description')
   description.textContent = 
-    txt.longdescription + " "  + txt.allergens;
+     txt.longdescription  + " "  + " " + " " + txt.allergens;
 
+console.log(txt.allergens);
 
-    //show allergens
-    if(txt.allergens) {
-      document.querySelector('.allergen').style.visibility = 'visible';
-      document.querySelector('.allergen').textContent = "A" + " " +txt.allergens;
-
-    }
+    
     
     fireEvent(description);
   
@@ -226,25 +232,27 @@ function fireEvent(description) {
 
 
 //FILTERS VARIABLES& EV LISTEnERS
-const vegfilter = document.querySelector('#veg-filter');
-// const alcohol = document.querySelector('#alcohol');
-vegfilter.addEventListener('click', vegFilterClicked);
-// alcohol.addEventListener('click', alcoholClicked);
+ const vegfilter = document.querySelector('#veg-filter');
+ const alcohol = document.querySelector('#alc-filter');
+ vegfilter.addEventListener('click', vegFilterClicked);
+ alcohol.addEventListener('click', alcoholClicked);
 
 
 function vegFilterClicked(){
   vegfilter.classList.toggle('active');
 const articles = document.querySelectorAll("article:not(.vegetarian)");
-console.log(articles);
 articles.forEach(article => article.classList.toggle('hide'));
 
 }
 
-// function alcoholClicked(){
-//   const art = document.querySelectorAll("article:not(.alcohol)");
-//   console.log(alcohol);
-  
-//   }
+ //ALCOHOL-NE RADI
+function alcoholClicked(){
+  alcohol.classList.toggle('active');
+const al = document.querySelectorAll("alc:not(.alcohol)");
+console.log(al);
+al.forEach(a => a.classList.toggle('hide2'));
+
+}
 
 
 

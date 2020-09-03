@@ -12,8 +12,9 @@
 <body>
   <header>
     <p id="logo">
-       <i class="fa fa-cutlery" aria-hidden="true"> Петроград</i></p>
-      
+       <i class="fa fa-cutlery" aria-hidden="true"></i>Петроград
+      </p>
+     
     
     <ul id="nav">
         <li class="navlink"><a href="#"></a></li>
@@ -26,8 +27,8 @@
 </header>
 <details>
   <summary>FILTERS</summary>
-  <button id="veg-filter"> vegetarian</button>
-  <button id="alcohol">has alcohol</button>
+  <button id="veg-filter">vegetarian</button>
+  <button id="alc-filter">has alcohol</button>
 </details>
 
   <main>
@@ -36,8 +37,10 @@
 <template id="products-template">
   <section>
    <article>
+     
+     
     <h3></h3>
-   
+    <p class="soldout"> </p>
    <img class="product-img" src="https://kea-alt-del.dk/t5/site/imgs/medium/ringbroed-druer-md.jpg" alt="some-russian-dish">
    
   
@@ -47,7 +50,6 @@
 
     <p class="about"> </p>
     <ul class="list">
-      <li class="soldout"> </li>
     <li class="price"></li>
     <li class="discount"></li>
     <li class = "sale"></li>
@@ -65,8 +67,11 @@
       <p></p>
       </div>  
     </article>
+  
+  
   </section>
 </template>
+<footer>&copy;Kristina Tomicic, student project</footer>
 <script src="script.js"></script>
 </body>
 
