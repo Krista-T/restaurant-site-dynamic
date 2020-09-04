@@ -189,14 +189,14 @@ li {
 #icons {
   display: flex;
   justify-content: space-around;
-  visibility: hidden;
+  
    
 }
 
 
 .allergen,
 .fa-leaf,
-.alcohol {
+.glass {
   font-size: 1.1rem;
   visibility: hidden;
 }

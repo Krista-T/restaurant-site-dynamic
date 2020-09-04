@@ -133,20 +133,20 @@ if(product.vegetarian) {
 
 //if alcohol
 if(product.alcohol) {
-  copy.querySelector('.alcohol').style.visibility = 'visible';
-  copy.querySelector('.alcohol').textContent = " " +  product.alcohol.toString()  + "%"   + " " + "alc.";
+  copy.querySelector('.glass').style.visibility = 'visible';
+  copy.querySelector('.glass').textContent = " " +  product.alcohol.toString()  + "%"   + " " + "alc.";
 }
 
  
 //filter CLASSES
-const article = copy.querySelector('article');
+const article = copy.querySelector('article.product');
 
 if(product.vegetarian) {
   article.classList.add('vegetarian');
 }
 
 if(product.alcohol) {
-  article.classList.add('alcohol');
+  article.classList.add('alc');
 }
 
 
@@ -229,7 +229,7 @@ function fireEvent(description) {
 function vegFilterClicked(){
   vegfilter.classList.toggle('active');
 const articles = document.querySelectorAll("article:not(.vegetarian)");
-articles.forEach(article => article.classList.toggle('hide2'));
+articles.forEach(article => article.classList.toggle('hide'));
 
 }
 
@@ -239,11 +239,10 @@ articles.forEach(article => article.classList.toggle('hide2'));
 
 function alcoholClicked(){
   alcohol.classList.toggle('active');
-const al = document.querySelectorAll("article.alcohol");
-console.log(al);
-al.forEach(a => a.classList.toggle('hide'));
-
-}
+  const articles = document.querySelectorAll("article.alc");
+  articles.forEach(article => article.classList.toggle('hide'));
+  
+  }
 
 
 
