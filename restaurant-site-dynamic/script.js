@@ -2,6 +2,7 @@
 
 function getData() {
   fetch("https://kea-alt-del.dk/t5/api/categories")
+
    //initialize data from json
   .then(function(inData){
        return inData.json();
@@ -15,9 +16,7 @@ getData();
 
 
 //call functions
-
 function  categoriesRecieved(cats) {
-  
   createSections(cats);
   createNavigation(cats);
   fetchData();
@@ -29,7 +28,7 @@ function  categoriesRecieved(cats) {
 function createSections(categories) {
  //loop through categories
   categories.forEach(createSec);
-  console.log(categories);
+  
   function createSec(category) {
     const section = document.createElement("section");
     //set attr (what, where)
@@ -69,7 +68,7 @@ fetch("https://kea-alt-del.dk/t5/api/productlist")
 }
 
 function dataReceived(products) {
-  console.log(products);
+  
   //loop through data
   products.forEach(showProduct);
 
@@ -79,10 +78,8 @@ function showProduct(product){
   const copy = template.cloneNode(true);
 
   copy.querySelector('article').dataset.id=product.id
+
    //POPULATE TEMPLATE
-
-
-
   //img
  const img = copy.querySelector(".product-img");
 
@@ -98,9 +95,9 @@ copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00
 //if on discount calculate price 
 if(product.discount) {
   
-   const newprice = product.price - product.discount;
-  console.log(newprice);
-   copy.querySelector('.price').classList.add('hide');
+  const newprice = product.price - product.discount;
+  
+  copy.querySelector('.price').classList.add('hide');
   copy.querySelector('.discount').classList.add('hide');
   copy.querySelector('.sale').textContent = "SALE:" + " " + newprice + ".00dkk";
 
@@ -109,7 +106,7 @@ if(product.discount) {
 
 //if soldout
 if(product.soldout){
-  console.log('sold');
+  
   copy.querySelector('.price').classList.add('hide');
   copy.querySelector('.discount').classList.add('hide');
   copy.querySelector('.sale').classList.add('hide');
@@ -117,7 +114,7 @@ if(product.soldout){
 }
 
 
-//if allergens 
+//if allergens DOLI I NAPRAVI FOREACH!!
 
 if(product.allergens) {
   copy.querySelector('.allergen').style.visibility = 'visible';
@@ -148,11 +145,9 @@ if(product.vegetarian) {
   article.classList.add('vegetarian');
 }
 
-
-//causes problems
-// if(product.alcohol) {
-//   article.classList.add('alcohol');
-// }
+if(product.alcohol) {
+  article.classList.add('alcohol');
+}
 
 
   
@@ -177,7 +172,7 @@ function setEventListener(btn){
 
       //recieve data
   function recieveData(){
-    console.log(copy)
+    
     //fetch all ids
     fetch("https://kea-alt-del.dk/t5/api/product?id=" + product.id )
 
@@ -188,31 +183,26 @@ function setEventListener(btn){
     
     //receive data
     .then(function showDetails(txt) {
+
+      //teacher did this line
       const arti = document.querySelector(`article[data-id="${product.id}"]`);
-        console.log('show details');
-      //  showDetails(); 
+       
       const description=arti.querySelector('.description')
   description.textContent = 
      txt.longdescription  + " "  + " " + " " + txt.allergens;
 
 console.log(txt.allergens);
-
-    
-    
-    fireEvent(description);
+     fireEvent(description);
   
   });
-
-  
+ 
   }
   
 //TOGGLE
 function fireEvent(description) {
-  console.log('i fired event');
 
     description.classList.toggle('button.expand');
 
-   
       if ( description.style.display == 'block') {
          
           description.style.display = 'none';
@@ -231,26 +221,27 @@ function fireEvent(description) {
 } 
 
 
-//FILTERS VARIABLES& EV LISTEnERS
- const vegfilter = document.querySelector('#veg-filter');
- const alcohol = document.querySelector('#alc-filter');
+//FILTERS  E LISTEnERS
+ const vegfilter = document.querySelector('#veg-filter'); 
  vegfilter.addEventListener('click', vegFilterClicked);
- alcohol.addEventListener('click', alcoholClicked);
-
+ 
 
 function vegFilterClicked(){
   vegfilter.classList.toggle('active');
 const articles = document.querySelectorAll("article:not(.vegetarian)");
-articles.forEach(article => article.classList.toggle('hide'));
+articles.forEach(article => article.classList.toggle('hide2'));
 
 }
 
  //ALCOHOL-NE RADI
+ const alcohol = document.querySelector('#non-alc-filter');
+ alcohol.addEventListener('click', alcoholClicked);
+
 function alcoholClicked(){
   alcohol.classList.toggle('active');
-const al = document.querySelectorAll("alc:not(.alcohol)");
+const al = document.querySelectorAll("article.alcohol");
 console.log(al);
-al.forEach(a => a.classList.toggle('hide2'));
+al.forEach(a => a.classList.toggle('hide'));
 
 }
 

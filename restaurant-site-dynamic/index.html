@@ -6,73 +6,70 @@
   <link rel="icon" href="data:;base64,=">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
-  <title>Dynamic Web</title>
+  <title>Dynamic Website, Petrograd</title>
 </head>
 
 <body>
   <header>
     <p id="logo">
-       <i class="fa fa-cutlery" aria-hidden="true"></i>Петроград
-      </p>
-     
-    
+      <i class="fa fa-cutlery" aria-hidden="true"></i>Петроград
+    </p>
+
+
     <ul id="nav">
-        <li class="navlink"><a href="#"></a></li>
-        <li class="navlink"><a href="#"></a></li>
-        <li class="navlink"><a href="#"></a></li>
+      <li class="navlink"><a href="#"></a></li>
+      <li class="navlink"><a href="#"></a></li>
+      <li class="navlink"><a href="#"></a></li>
     </ul>
     <div id="burger">
-        <i class="fa fa-bars" aria-hidden="true"></i>
+      <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
-</header>
-<details>
-  <summary>FILTERS</summary>
-  <button id="veg-filter">vegetarian</button>
-  <button id="alc-filter">has alcohol</button>
-</details>
+  </header>
+  <details>
+    <summary>FILTER BY</summary>
+    <button id="veg-filter">vegetarian</button>
+    <button id="non-alc-filter">no alcohol</button>
+  </details>
 
   <main>
   </main>
-  
-<template id="products-template">
-  <section>
-   <article>
-     
-     
-    <h3></h3>
-    <p class="soldout"> </p>
-   <img class="product-img" src="https://kea-alt-del.dk/t5/site/imgs/medium/ringbroed-druer-md.jpg" alt="some-russian-dish">
-   
-  
-    
-  
+
+  <template id="products-template">
+    <section>
+      <article class="product">
 
 
-    <p class="about"> </p>
-    <ul class="list">
-    <li class="price"></li>
-    <li class="discount"></li>
-    <li class = "sale"></li>
-  </ul>
+        <h3></h3>
+        <p class="soldout"> </p>
+        <img class="product-img" src="https://kea-alt-del.dk/t5/site/imgs/medium/ringbroed-druer-md.jpg"
+          alt="some-russian-dish">
 
-    <div class="icons">
-      <i class="allergen">A</i>
-      <i  class="vegetarian fa fa-leaf" aria-hidden="true"></i>
-      <i  class="alcohol fa fa-glass" aria-hidden="true"></i> </div>
 
-       <button class="expand"><i class="fa fa-caret-down" aria-hidden="true"> see more</i></button>
-     
+        <p class="about"> </p>
+        <ul class="list">
+          <li class="price"></li>
+          <li class="discount"></li>
+          <li class="sale"></li>
+        </ul>
 
-     <div class="description">
-      <p></p>
-      </div>  
-    </article>
-  
-  
-  </section>
-</template>
-<footer>&copy;Kristina Tomicic, student project</footer>
-<script src="script.js"></script>
+        <div class="icons">
+          <i class="allergen">A</i>
+          <i class="vegetarian fa fa-leaf" aria-hidden="true"></i>
+          <i class="alcohol fa fa-glass" aria-hidden="true"></i> </div>
+
+        <button class="expand"><i class="fa fa-caret-down" aria-hidden="true"> see more</i></button>
+
+
+        <div class="description">
+          <p></p>
+        </div>
+      </article>
+
+
+    </section>
+  </template>
+  <footer>&copy;Kristina Tomicic, Dynamic Web - student project</footer>
+  <script src="script.js"></script>
 </body>
 
 </html>
