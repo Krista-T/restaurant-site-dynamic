@@ -1,22 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+:root {
+  --font-body: 'Montserrat', sans-serif;
+}
 /* * {
   box-sizing: border-box;
 } */
-
-/* #my-box {
-  width: 80%;
-  padding: 30px;
-
-} */
-
 
 
 body {
   margin: 0;
   padding: 30px;
   background-color: rgb(36, 35, 35);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   color: rgb(250, 235, 235);
 
 
@@ -48,7 +44,6 @@ body {
   font-size: 2.2rem;
   color: rgb(250, 235, 235);
   margin: 55px;
-
 
 }
 
@@ -240,7 +235,8 @@ i {
 
 .description {
   display: none;
-  margin-top: 5%;
+  margin: 5%;
+  text-align: justify;
 }
 
 footer{
