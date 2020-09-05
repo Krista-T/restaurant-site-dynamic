@@ -43,7 +43,14 @@ function createSections(categories) {
 
 //create navigation
 function createNavigation(categories) {
-
+ 
+ categories.forEach(cat => {
+  const a = document.createElement("a");
+  a.textContent = cat;
+  a.setAttribute("href", `#${cat}`)
+  document.querySelector("#nav").appendChild(a);
+  console.log(a)
+});
 
 }
 

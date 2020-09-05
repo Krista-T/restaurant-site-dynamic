@@ -4,6 +4,9 @@
   --font-body: 'Montserrat', sans-serif;
 }
 
+/* * {
+  box-sizing: border-box;
+} */
 
 
 body {
@@ -12,6 +15,7 @@ body {
   background-color: rgb(36, 35, 35);
   font-family: var(--font-body);
   color: rgb(250, 235, 235);
+
 
 }
 
@@ -38,6 +42,7 @@ body {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  font-family: var(--font-body);
   font-size: 2.2rem;
   color: rgb(250, 235, 235);
   margin: 55px;
@@ -65,7 +70,7 @@ body {
   z-index: 2;
   right: 3%;
   top: 50px;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #ffffff;
 }
 
@@ -90,8 +95,7 @@ main>section>h1 {
 article {
   display: flex;
   flex-direction: column;
-
-
+  /* border: .5px solid whitesmoke; */
 }
 
 img {
@@ -102,13 +106,11 @@ img {
 }
 
 /**STYLE**/
-
-
 summary,
 #veg-filter,
 #non-alc-filter {
   position: fixed;
-  margin-left: 91.5%;
+  margin-left: 92%;
   font-size: .8rem;
 
 }
@@ -116,35 +118,28 @@ summary,
 /*mobile*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
 
-
-  #burger {
-    right: 4%;
-    font-size: 3.5rem;
-
-  }
-
   summary,
   #veg-filter,
   #non-alc-filter {
 
-    margin-left: 76%;
+    margin-left: 80%;
 
   }
 
 }
 
 summary {
-  top: 105px;
+  top: 100px;
 
 }
 
 #veg-filter {
-  top: 135px;
+  top: 130px;
 
 }
 
 #non-alc-filter {
-  top: 153px;
+  top: 148px;
 
 }
 
@@ -162,7 +157,7 @@ h3 {
   text-align: center;
   text-transform: uppercase;
   margin-top: 25%;
-  max-height: 10px;
+  max-height: 5px;
 
 }
 
@@ -244,7 +239,6 @@ i {
 
 .expand:hover {
   background-color: rgb(136, 134, 134);
-
 }
 
 
