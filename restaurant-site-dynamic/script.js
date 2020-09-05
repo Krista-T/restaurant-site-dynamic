@@ -176,12 +176,11 @@ function setEventListener(btn){
      txt.longdescription;
 
 
-//if allergen , add icon
+//if allergen , add icon ? allergen
 console.log(txt.allergens.length);
      if(txt.allergens.length !=0){
       description.textContent = 
-      txt.longdescription + " " + "CONTAINS:" + " " + txt.allergens;
-      document.querySelector('.allergen').style.visibility = 'visible';
+      txt.longdescription + " "  + "CONTAINS:" + " " + txt.allergens;
      
      }
      
