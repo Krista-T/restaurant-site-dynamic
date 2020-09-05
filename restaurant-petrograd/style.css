@@ -4,9 +4,6 @@
   --font-body: 'Montserrat', sans-serif;
 }
 
-/* * {
-  box-sizing: border-box;
-} */
 
 
 body {
@@ -15,7 +12,6 @@ body {
   background-color: rgb(36, 35, 35);
   font-family: var(--font-body);
   color: rgb(250, 235, 235);
-
 
 }
 
@@ -69,7 +65,7 @@ body {
   z-index: 2;
   right: 3%;
   top: 50px;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #ffffff;
 }
 
@@ -94,7 +90,8 @@ main>section>h1 {
 article {
   display: flex;
   flex-direction: column;
-  /* border: .5px solid whitesmoke; */
+
+
 }
 
 img {
@@ -105,11 +102,13 @@ img {
 }
 
 /**STYLE**/
+
+
 summary,
 #veg-filter,
 #non-alc-filter {
   position: fixed;
-  margin-left: 92%;
+  margin-left: 91.5%;
   font-size: .8rem;
 
 }
@@ -117,28 +116,35 @@ summary,
 /*mobile*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
 
+
+  #burger {
+    right: 4%;
+    font-size: 3.5rem;
+
+  }
+
   summary,
   #veg-filter,
   #non-alc-filter {
 
-    margin-left: 80%;
+    margin-left: 76%;
 
   }
 
 }
 
 summary {
-  top: 100px;
+  top: 105px;
 
 }
 
 #veg-filter {
-  top: 130px;
+  top: 135px;
 
 }
 
 #non-alc-filter {
-  top: 148px;
+  top: 153px;
 
 }
 
@@ -156,7 +162,7 @@ h3 {
   text-align: center;
   text-transform: uppercase;
   margin-top: 25%;
-  max-height: 5px;
+  max-height: 10px;
 
 }
 
@@ -238,6 +244,7 @@ i {
 
 .expand:hover {
   background-color: rgb(136, 134, 134);
+
 }
 
 
