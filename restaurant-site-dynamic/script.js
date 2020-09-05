@@ -43,12 +43,8 @@ function createSections(categories) {
 
 //create navigation
 function createNavigation(categories) {
-  categories.forEach(cat => {
-    const a = document.createElement("a");
-    a.textContent = cat;
-    a.setAttribute("href", "#" + cat)
-    document.querySelector("#nav").appendChild(a);
-  })
+ 
+  
 }
 
   //FETCH DATA + WRAP IT IN FUNCTION
@@ -86,7 +82,7 @@ function showProduct(product){
  //set attr to img 
 img.setAttribute("src", "https://kea-alt-del.dk/t5/site/imgs/medium/" + product.image + "-md.jpg");
 
-
+//other elements
  copy.querySelector('h3').textContent = product.name;
  copy.querySelector('.about').textContent = product.shortdescription;
 copy.querySelector('.price').textContent = "PRICE:" + " " + product.price + ".00dkk";
@@ -111,15 +107,6 @@ if(product.soldout){
   copy.querySelector('.discount').classList.add('hide');
   copy.querySelector('.sale').classList.add('hide');
   copy.querySelector('.soldout').textContent = "SOLDOUT";
-}
-
-
-//if allergens DOLI I NAPRAVI FOREACH!!
-
-if(product.allergens) {
-  copy.querySelector('.allergen').style.visibility = 'visible';
-  copy.querySelector('.allergen').textContent = "contains:" + " " +product.allergens;
-  
 }
 
 
@@ -151,10 +138,6 @@ if(product.alcohol) {
 
 
   
-
-
-
- 
 
   //show description
 const btnExpand = copy.querySelector('button.expand');
@@ -188,10 +171,21 @@ function setEventListener(btn){
       const arti = document.querySelector(`article[data-id="${product.id}"]`);
        
       const description=arti.querySelector('.description')
-  description.textContent = 
-     txt.longdescription  + " "  + " " + " " + txt.allergens;
 
-console.log(txt.allergens);
+  description.textContent = 
+     txt.longdescription;
+
+
+//if allergen , add icon
+console.log(txt.allergens.length);
+     if(txt.allergens.length !=0){
+      description.textContent = 
+      txt.longdescription + " " + "CONTAINS:" + " " + txt.allergens;
+      document.querySelector('.allergen').style.visibility = 'visible';
+     
+     }
+     
+
      fireEvent(description);
   
   });
@@ -212,6 +206,11 @@ function fireEvent(description) {
         }  
       }
 
+
+
+
+
+
   //append
   const parentElement = document.querySelector("section#" +product.category);
   parentElement.appendChild(copy);
@@ -221,7 +220,7 @@ function fireEvent(description) {
 } 
 
 
-//FILTERS  E LISTEnERS
+//FILTERS  E. LISTEnERS
  const vegfilter = document.querySelector('#veg-filter'); 
  vegfilter.addEventListener('click', vegFilterClicked);
  
@@ -233,7 +232,7 @@ articles.forEach(article => article.classList.toggle('hide'));
 
 }
 
- //ALCOHOL-NE RADI
+ //ALCOHOL
  const alcohol = document.querySelector('#non-alc-filter');
  alcohol.addEventListener('click', alcoholClicked);
 
